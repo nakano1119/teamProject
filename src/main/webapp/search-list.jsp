@@ -34,9 +34,9 @@ List<TimeBean> timeList = (List) request.getAttribute("timeList");
 			for (TimeBean time : timeList) {
 			%>
 			<tr>
-				<td><%=time.getStart_time()%></td>
-				<td><%=time.getEnd_time()%></td>
-				<td><%=time.getOver_time()%></td>
+				<td><%=time.getStartTime()%></td>
+				<td><%=time.getEndTime()%></td>
+				<td><%=time.getOverTime()%></td>
 				<td><a href="time-edit?id=<%=time.getId()%>">編集</a></td>
 				<td><a href="time-delete?id=<%=time.getId()%>">削除</a></td>
 			</tr>
@@ -45,5 +45,8 @@ List<TimeBean> timeList = (List) request.getAttribute("timeList");
 			%>
 		</tbody>
 	</table>
+	<form action="menu.jsp" method="get">
+		<input type="submit" value="戻る">
+	</form>
 </body>
 </html>

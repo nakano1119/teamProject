@@ -19,19 +19,19 @@ TimeBean time = (TimeBean) request.getAttribute("time");
 					日付：<%=time.getDate()%></p>
 			</div>
 			<div>
-				<label for="start_time">出勤時間</label> <input type="time"
-					name="start_time" id="start_time"
-					value="<%=time.getStart_time().toString().substring(0, 5)%>">
+				<label for="startTime">出勤時間</label> <input type="time"
+					name="startTime" id="startTime"
+					value="<%=time.getStartTime().toString().substring(0, 5)%>">
 			</div>
 			<div>
-				<label for="end_time">退勤時間</label> <input type="time"
-					name="end_time" id="end_time"
-					value="<%=time.getEnd_time().toString().substring(0, 5)%>">
+				<label for="endTime">退勤時間</label> <input type="time"
+					name="endTime" id="endTime"
+					value="<%=time.getEndTime().toString().substring(0, 5)%>">
 			</div>
 			<div>
-				<label for="over_time">残業時間</label> <input type="time"
-					name="over_time" id="over_time"
-					value="<%=time.getOver_time().toString().substring(0, 5)%>">
+				<label for="overTime">残業時間</label> <input type="time"
+					name="overTime" id="overTime"
+					value="<%=time.getOverTime().toString().substring(0, 5)%>">
 			</div>
 			<div>
 				<button type="submit">更新</button>

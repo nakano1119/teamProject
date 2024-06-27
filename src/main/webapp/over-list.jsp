@@ -14,8 +14,8 @@ List<TimeBean> overList = (List) request.getAttribute("overList");
 <body>
 	<h1>残業管理</h1>
 	<form action="over" method="post">
-		<label for="employee_id">社員番号</label> <input type="employee_id"
-			name="employee_id" required>
+		<label for="employeeId">社員番号</label> <input type="employeeId"
+			name="employeeId" required>
 		<button type="submit">検索</button>
 	</form>
 	<table>
@@ -31,7 +31,7 @@ List<TimeBean> overList = (List) request.getAttribute("overList");
 			%>
 			<tr>
 				<td><%=time.getDate()%></td>
-				<td><%=time.getOver_time()%></td>
+				<td><%=time.getOverTime()%></td>
 			</tr>
 			<%
 			}

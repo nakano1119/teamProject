@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.UserDAO;
-import model.entity.TimeBean;
+import model.entity.UserBean;
 
 /**
  * Servlet implementation class LoginServlet
@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 		UserDAO dao = new UserDAO();
 
 		try {
-			TimeBean user = dao.login(name, password);
+			UserBean user = dao.login(name, password);
 
 			if (Objects.nonNull(user)) {
 				url = "menu.jsp";

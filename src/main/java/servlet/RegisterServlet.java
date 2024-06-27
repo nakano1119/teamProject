@@ -46,18 +46,18 @@ public class RegisterServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 
 		// リクエストパラメータの取得
-		int employee_id = Integer.parseInt(request.getParameter("employee_id"));
+		int employeeId = Integer.parseInt(request.getParameter("employeeId"));
 		Date date = Date.valueOf(request.getParameter("date"));
-		Time start_time = Time.valueOf(request.getParameter("start_time") + ":00");
-		Time end_time = Time.valueOf(request.getParameter("end_time") + ":00");
-		Time over_time = Time.valueOf(request.getParameter("over_time") + ":00");
+		Time startTime = Time.valueOf(request.getParameter("startTime") + ":00");
+		Time endTime = Time.valueOf(request.getParameter("endTime") + ":00");
+		Time overTime = Time.valueOf(request.getParameter("overTime") + ":00");
 
 		// TimeDAOクラスのインスタンス生成
 		TimeDAO dao = new TimeDAO();
 
 		try {
 			// TimeDAOクラスregisterメソッドにemployee_id, date, start_time, end_time, over_timeを渡しデータベース登録
-			dao.register(employee_id, date, start_time, end_time, over_time);
+			dao.register(employeeId, date, startTime, endTime, overTime);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

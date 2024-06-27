@@ -36,9 +36,9 @@ List<TimeBean> timeList = (List) request.getAttribute("timeList");
 			%>
 			<tr>
 				<td><%=time.getDate()%></td>
-				<td><%=time.getStart_time()%></td>
-				<td><%=time.getEnd_time()%></td>
-				<td><%=time.getOver_time()%></td>
+				<td><%=time.getStartTime()%></td>
+				<td><%=time.getEndTime()%></td>
+				<td><%=time.getOverTime()%></td>
 				<td><a href="edit?id=<%=time.getId()%>">編集</a></td>
 				<td><a href="delete?id=<%=time.getId()%>">削除</a></td>
 			</tr>

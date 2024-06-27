@@ -23,7 +23,7 @@ public class TimeDAO {
 		List<TimeBean> timeList = new ArrayList<>();
 
 		// SQL文
-		String sql = "SELECT id, employee_id, date, start_time, end_time, over_time FROM time";
+		String sql = "SELECT id, employeeId, date, startTime, endTime, overTime FROM time";
 
 		// データベース接続
 		// PreparedStatementでSQL実行の準備
@@ -37,14 +37,14 @@ public class TimeDAO {
 			// nextでカーソルを1行ずつ移動させる
 			while (res.next()) {
 				int id = res.getInt("id");
-				int employee_id = res.getInt("employee_id");
+				int employeeId = res.getInt("employeeId");
 				Date date = res.getDate("date");
-				Time start_time = res.getTime("start_time");
-				Time end_time = res.getTime("end_time");
-				Time over_time = res.getTime("over_time");
+				Time startTime = res.getTime("startTime");
+				Time endTime = res.getTime("endTime");
+				Time overTime = res.getTime("overTime");
 
 				// DBから取得した値を初期値として、TimeBeanのインスタンス生成
-				TimeBean todo = new TimeBean(id, employee_id, date, start_time, end_time, over_time);
+				TimeBean todo = new TimeBean(id, employeeId, date, startTime, endTime, overTime);
 
 				// timeListにインスタンスを追加
 				timeList.add(todo);
@@ -64,7 +64,7 @@ public class TimeDAO {
 		List<TimeBean> timeList = new ArrayList<>();
 
 		// SQL文
-		String sql = "SELECT id, employee_id, date, start_time, end_time, over_time FROM time WHERE date = ?";
+		String sql = "SELECT id, employeeId, date, startTime, endTime, overTime FROM time WHERE date = ?";
 
 		// データベース接続
 		// PreparedStatementでSQL実行の準備
@@ -81,13 +81,13 @@ public class TimeDAO {
 			// nextでカーソルを1行ずつ移動させる
 			while (res.next()) {
 				int id = res.getInt("id");
-				int employee_id = res.getInt("employee_id");
-				Time start_time = res.getTime("start_time");
-				Time end_time = res.getTime("end_time");
-				Time over_time = res.getTime("over_time");
+				int employeeId = res.getInt("employeeId");
+				Time startTime = res.getTime("startTime");
+				Time endTime = res.getTime("endTime");
+				Time overTime = res.getTime("overTime");
 
 				// DBから取得した値を初期値として、TimeBeanのインスタンス生成
-				TimeBean todo = new TimeBean(id, employee_id, start_time, end_time, over_time);
+				TimeBean todo = new TimeBean(id, employeeId, startTime, endTime, overTime);
 
 				// timeListにインスタンスを追加
 				timeList.add(todo);
@@ -102,12 +102,12 @@ public class TimeDAO {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public int register(int employee_id, Date date, Time start_time, Time end_time, Time over_time)
+	public int register(int employeeId, Date date, Time startTime, Time endTime, Time overTime)
 			throws ClassNotFoundException, SQLException {
 		int count = 0; // 登録件数を格納する変数
 
 		// SQL文（プレースホルダー2つ）
-		String sql = "INSERT INTO time(employee_id, date, start_time, end_time, over_time) VALUES(?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO time(employeeId, date, startTime, endTime, overTime) VALUES(?, ?, ?, ?, ?)";
 
 		// データベース接続
 		// PreparedStatementでSQL実行の準備
@@ -115,15 +115,15 @@ public class TimeDAO {
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
 
 			// 1つ目のプレースホルダーに引数employee_idの値をセット
-			pstmt.setInt(1, employee_id);
+			pstmt.setInt(1, employeeId);
 			// 2つ目のプレースホルダーに引数dateの値をセット
 			pstmt.setDate(2, date);
 			// 3つ目のプレースホルダーに引数start_timeの値をセット
-			pstmt.setTime(3, start_time);
+			pstmt.setTime(3, startTime);
 			// 4つ目のプレースホルダーに引数end_timeの値をセット
-			pstmt.setTime(4, end_time);
+			pstmt.setTime(4, endTime);
 			// 5つ目のプレースホルダーに引数over_timeの値をセット
-			pstmt.setTime(5, over_time);
+			pstmt.setTime(5, overTime);
 
 			// SQL実行し、登録件数をcountに代入
 			count = pstmt.executeUpdate();
@@ -142,7 +142,7 @@ public class TimeDAO {
 		TimeBean time = null;
 
 		// SQL文（プレースホルダー1つ）
-		String sql = "SELECT id, date, start_time, end_time, over_time FROM time WHERE id = ?";
+		String sql = "SELECT id, date, startTime, endTime, overTime FROM time WHERE id = ?";
 
 		// データベース接続
 		// PreparedStatementでSQL実行の準備
@@ -158,12 +158,12 @@ public class TimeDAO {
 			// 実行結果の表からtweetテーブルの値を取得
 			if (res.next()) {
 				Date date = res.getDate("date");
-				Time start_time = res.getTime("start_time");
-				Time end_time = res.getTime("end_time");
-				Time over_time = res.getTime("over_time");
+				Time startTime = res.getTime("startTime");
+				Time endTime = res.getTime("endTime");
+				Time overTime = res.getTime("overTime");
 
 				// DBから取得した値を初期値として、TimeBeanのインスタンス生成
-				time = new TimeBean(id, date, start_time, end_time, over_time);
+				time = new TimeBean(id, date, startTime, endTime, overTime);
 			}
 		}
 		return time;
@@ -175,12 +175,12 @@ public class TimeDAO {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public int edit(int id, Date date, Time start_time, Time end_time, Time over_time)
+	public int edit(int id, Date date, Time startTime, Time endTime, Time overTime)
 			throws ClassNotFoundException, SQLException {
 		int count = 0; // 更新件数を格納する変数
 
 		// SQL文（プレースホルダー3つ）
-		String sql = "UPDATE time SET date = ?, start_time = ?, end_time = ?, over_time = ? WHERE id = ?";
+		String sql = "UPDATE time SET date = ?, startTime = ?, endTime = ?, overTime = ? WHERE id = ?";
 
 		// データベース接続
 		// PreparedStatementでSQL実行の準備
@@ -188,9 +188,9 @@ public class TimeDAO {
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
 
 			pstmt.setDate(1, date);
-			pstmt.setTime(2, start_time);
-			pstmt.setTime(3, end_time);
-			pstmt.setTime(4, over_time);
+			pstmt.setTime(2, startTime);
+			pstmt.setTime(3, endTime);
+			pstmt.setTime(4, overTime);
 			pstmt.setInt(5, id);
 
 			// SQL実行し、更新件数をcountに代入
@@ -205,19 +205,19 @@ public class TimeDAO {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public List<TimeBean> over(int employee_id) throws ClassNotFoundException, SQLException {
+	public List<TimeBean> over(int employeeId) throws ClassNotFoundException, SQLException {
 		// リストの初期化
 		List<TimeBean> overList = new ArrayList<>();
 
 		// SQL文
-		String sql = "SELECT date, over_time FROM time WHERE employee_id = ?";
+		String sql = "SELECT date, overTime FROM time WHERE employeeId = ?";
 
 		// データベース接続
 		// PreparedStatementでSQL実行の準備
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);) {
 
-			pstmt.setInt(1, employee_id);
+			pstmt.setInt(1, employeeId);
 
 			// SQL実行し、実行結果の表と現在の行を指しているカーソルを取得
 			ResultSet res = pstmt.executeQuery();
@@ -226,10 +226,10 @@ public class TimeDAO {
 			// nextでカーソルを1行ずつ移動させる
 			while (res.next()) {
 				Date date = res.getDate("date");
-				Time over_time = res.getTime("over_time");
+				Time overTime = res.getTime("overTime");
 
 				// DBから取得した値を初期値として、TimeBeanのインスタンス生成
-				TimeBean todo = new TimeBean(date, over_time);
+				TimeBean todo = new TimeBean(date, overTime);
 
 				// overListにインスタンスを追加
 				overList.add(todo);

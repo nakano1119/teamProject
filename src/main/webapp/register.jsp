@@ -9,13 +9,13 @@
 <body>
 	<h2>登録</h2>
 	<form action="register" method="post">
-		<label for="employee_id">社員番号</label> <input type="employee_id"
-			name="employee_id" required> <br> <label
-			for="employee_id">日付</label> <input type="date" name="date" required>
-		<br> <label for="start_time">出勤時間</label> <input type="time"
-			name="start_time" required> <br> <label for="end_time">退勤時間</label>
-		<input type="time" name="end_time" required> <br> <label
-			for="over_time">残業時間</label> <input type="time" name="over_time"
+		<label for="employeeId">社員番号</label> <input type="employeeId"
+			name="employeeId" required> <br> <label
+			for="employeeId">日付</label> <input type="date" name="date" required>
+		<br> <label for="startTime">出勤時間</label> <input type="time"
+			name="startTime" required> <br> <label for="endTime">退勤時間</label>
+		<input type="time" name="endTime" required> <br> <label
+			for="overTime">残業時間</label> <input type="time" name="overTime"
 			required> <br> <input type="submit" value="登録">
 	</form>
 	<form action="menu.jsp" method="get">

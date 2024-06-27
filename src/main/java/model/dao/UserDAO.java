@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.entity.TimeBean;
+import model.entity.UserBean;
 
 public class UserDAO {
 	/**
@@ -14,7 +14,7 @@ public class UserDAO {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public TimeBean login(String name, String password) throws ClassNotFoundException, SQLException {
+	public UserBean login(String name, String password) throws ClassNotFoundException, SQLException {
 
 		// SQL文
 		String sql = "SELECT * FROM user WHERE name = ? AND password = ?";
@@ -35,7 +35,7 @@ public class UserDAO {
 			// User情報を取得
 			// nextでカーソルを1行ずつ移動させる
 			if (res.next()) {
-				TimeBean user = new TimeBean();
+				UserBean user = new UserBean();
 				user.setId(res.getInt("id"));
 				user.setName(res.getString("name"));
 				user.setPassword(res.getString("password"));

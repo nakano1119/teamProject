@@ -48,7 +48,7 @@ public class OverServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		// リクエストパラメータの取得
-		int employee_id = Integer.parseInt(request.getParameter("employee_id"));
+		int employeeId = Integer.parseInt(request.getParameter("employeeId"));
 
 		// timeデータを格納する変数
 		List<TimeBean> overList = null;
@@ -58,7 +58,7 @@ public class OverServlet extends HttpServlet {
 
 		try {
 			// TimeDAOクラスのoverメソッド呼び出し、残業データ取得
-			overList = dao.over(employee_id);
+			overList = dao.over(employeeId);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

@@ -73,16 +73,16 @@ public class EditServlet extends HttpServlet {
 		// リクエストパラメータの取得
 		int id = Integer.parseInt(request.getParameter("id"));
 		Date date = Date.valueOf(request.getParameter("date"));
-		Time start_time = Time.valueOf(request.getParameter("start_time") + ":00");
-		Time end_time = Time.valueOf(request.getParameter("end_time") + ":00");
-		Time over_time = Time.valueOf(request.getParameter("over_time") + ":00");
+		Time startTime = Time.valueOf(request.getParameter("startTime") + ":00");
+		Time endTime = Time.valueOf(request.getParameter("endTime") + ":00");
+		Time overTime = Time.valueOf(request.getParameter("overTime") + ":00");
 
 		// TimeDAOクラスのインスタンス生成
 		TimeDAO dao = new TimeDAO();
 
 		try {
 			// TimeDAOクラスのeditメソッド呼び出し、勤怠データ更新
-			dao.edit(id, date, start_time, end_time, over_time);
+			dao.edit(id, date, startTime, endTime, overTime);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
