@@ -50,6 +50,7 @@ public class LoginServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
 		String url = "";
+		String error = "";
 
 		UserDAO dao = new UserDAO();
 
@@ -61,11 +62,15 @@ public class LoginServlet extends HttpServlet {
 
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
+			} else {
+				error = "ユーザーが存在しません。";
+				url = "login.jsp";
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 
+		request.setAttribute("error", error);
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 	}

@@ -75,6 +75,13 @@ public class TimeBean implements Serializable {
 		this.overTime = overTime;
 	}
 
+	public TimeBean(Date date, Time startTime, Time endTime, Time overTime) {
+		this.date = date;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.overTime = overTime;
+	}
+
 	/**
 	 * @return id
 	 */

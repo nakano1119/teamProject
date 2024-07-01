@@ -46,7 +46,16 @@ public class RegisterServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 
 		// リクエストパラメータの取得
-		int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+		int employeeId;
+		try {
+			employeeId = Integer.parseInt(request.getParameter("employeeId"));
+		} catch (NumberFormatException e) {
+			// エラーメッセージを設定してリクエストを転送
+			request.setAttribute("error", "無効な社員番号が入力されました。");
+			RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+			rd.forward(request, response);
+			return;
+		}
 		Date date = Date.valueOf(request.getParameter("date"));
 		Time startTime = Time.valueOf(request.getParameter("startTime") + ":00");
 		Time endTime = Time.valueOf(request.getParameter("endTime") + ":00");

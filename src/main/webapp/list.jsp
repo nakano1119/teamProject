@@ -40,7 +40,7 @@ List<TimeBean> timeList = (List) request.getAttribute("timeList");
 				<td><%=time.getEndTime()%></td>
 				<td><%=time.getOverTime()%></td>
 				<td><a href="edit?id=<%=time.getId()%>">編集</a></td>
-				<td><a href="delete?id=<%=time.getId()%>">削除</a></td>
+				<td><a href="delete-check?id=<%=time.getId()%>">削除</a></td>
 			</tr>
 			<%
 			}

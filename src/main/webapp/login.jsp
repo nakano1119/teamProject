@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+String error = (String) request.getAttribute("error");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,5 +22,12 @@
 		</div>
 		<button type="submit">ログイン</button>
 	</form>
+	<%
+	if (error != null) {
+	%>
+	<%=error%></p>
+	<%
+	}
+	%>
 </body>
 </html>

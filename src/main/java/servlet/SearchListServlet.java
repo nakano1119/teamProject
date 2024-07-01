@@ -53,6 +53,7 @@ public class SearchListServlet extends HttpServlet {
 
 		// timeデータを格納する変数
 		List<TimeBean> timeList = null;
+		String error = "";
 
 		// TimeDAOクラスのインスタンス生成
 		TimeDAO dao = new TimeDAO();
@@ -60,6 +61,9 @@ public class SearchListServlet extends HttpServlet {
 		try {
 			// TimeDAOクラスのsearchTimeListメソッド呼び出し、勤怠データ取得
 			timeList = dao.searchTimeList(date);
+			if (timeList.isEmpty()) {
+				error = "勤怠情報が登録されていません。";
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -68,6 +72,7 @@ public class SearchListServlet extends HttpServlet {
 		request.setAttribute("timeList", timeList);
 
 		// 転送
+		request.setAttribute("error", error);
 		RequestDispatcher rd = request.getRequestDispatcher("search-list.jsp");
 		rd.forward(request, response);
 	}

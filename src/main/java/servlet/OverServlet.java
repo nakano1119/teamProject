@@ -52,6 +52,7 @@ public class OverServlet extends HttpServlet {
 
 		// timeデータを格納する変数
 		List<TimeBean> overList = null;
+		String error = "";
 
 		// TimeDAOクラスのインスタンス生成
 		TimeDAO dao = new TimeDAO();
@@ -59,6 +60,9 @@ public class OverServlet extends HttpServlet {
 		try {
 			// TimeDAOクラスのoverメソッド呼び出し、残業データ取得
 			overList = dao.over(employeeId);
+			if (overList.isEmpty()) {
+				error = "該当の従業員が存在しません。";
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -67,6 +71,7 @@ public class OverServlet extends HttpServlet {
 		request.setAttribute("overList", overList);
 
 		// 転送
+		request.setAttribute("error", error);
 		RequestDispatcher rd = request.getRequestDispatcher("over-list.jsp");
 		rd.forward(request, response);
 	}

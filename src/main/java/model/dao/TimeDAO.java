@@ -263,4 +263,36 @@ public class TimeDAO {
 		}
 		return count;
 	}
+
+	public TimeBean deleteCheck(int Id) throws ClassNotFoundException, SQLException {
+		// リストの初期化
+		TimeBean time = null;
+
+		// SQL文
+		String sql = "SELECT date, startTime, endTime, overTime FROM time WHERE Id = ?";
+
+		// データベース接続
+		// PreparedStatementでSQL実行の準備
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);) {
+
+			pstmt.setInt(1, Id);
+
+			// SQL実行し、実行結果の表と現在の行を指しているカーソルを取得
+			ResultSet res = pstmt.executeQuery();
+
+			// 実行結果の表から順番に値を取得
+			// nextでカーソルを1行ずつ移動させる
+			while (res.next()) {
+				Date date = res.getDate("date");
+				Time startTime = res.getTime("startTime");
+				Time endTime = res.getTime("endTime");
+				Time overTime = res.getTime("overTime");
+
+				// DBから取得した値を初期値として、TimeBeanのインスタンス生成
+				time = new TimeBean(date, startTime, endTime, overTime);
+			}
+		}
+		return time;
+	}
 }

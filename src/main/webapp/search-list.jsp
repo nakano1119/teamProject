@@ -5,6 +5,9 @@
 <%
 List<TimeBean> timeList = (List) request.getAttribute("timeList");
 %>
+<%
+String error = (String) request.getAttribute("error");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +16,14 @@ List<TimeBean> timeList = (List) request.getAttribute("timeList");
 </head>
 <body>
 	<h1>勤怠一覧</h1>
-	<form action="list" method="post">
+	<%
+	if (error != null) {
+	%>
+	<%=error%></p>
+	<%
+	}
+	%>
+	<form action="search-list" method="post">
 		<div>
 			<label for="date">日付</label> <input type="date" name="date" required>
 		</div>

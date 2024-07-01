@@ -5,6 +5,9 @@
 <%
 List<TimeBean> overList = (List) request.getAttribute("overList");
 %>
+<%
+String error = (String) request.getAttribute("error");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +16,13 @@ List<TimeBean> overList = (List) request.getAttribute("overList");
 </head>
 <body>
 	<h1>残業管理</h1>
+	<%
+	if (error != null) {
+	%>
+	<%=error%></p>
+	<%
+	}
+	%>
 	<form action="over" method="post">
 		<label for="employeeId">社員番号</label> <input type="employeeId"
 			name="employeeId" required>
