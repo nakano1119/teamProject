@@ -12,7 +12,7 @@ TimeBean time = (TimeBean) request.getAttribute("time");
 </head>
 <body>
 	<div>
-		<h1>編集</h1>
+		<h1>以下の勤怠情報を削除します。</h1>
 		<form action="delete" method="post">
 			<div>
 				<p>

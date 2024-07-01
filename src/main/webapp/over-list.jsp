@@ -28,6 +28,9 @@ String error = (String) request.getAttribute("error");
 			name="employeeId" required>
 		<button type="submit">検索</button>
 	</form>
+	<%
+	if (overList != null) {
+	%>
 	<table>
 		<thead>
 			<tr>
@@ -48,6 +51,9 @@ String error = (String) request.getAttribute("error");
 			%>
 		</tbody>
 	</table>
+	<%
+	}
+	%>
 	<form action="menu.jsp" method="get">
 		<input type="submit" value="戻る">
 	</form>

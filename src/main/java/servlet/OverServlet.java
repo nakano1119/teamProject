@@ -48,7 +48,16 @@ public class OverServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		// リクエストパラメータの取得
-		int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+		int employeeId;
+		try {
+			employeeId = Integer.parseInt(request.getParameter("employeeId"));
+		} catch (NumberFormatException e) {
+			// エラーメッセージを設定してリクエストを転送
+			request.setAttribute("error", "無効な社員番号が入力されました。");
+			RequestDispatcher rd = request.getRequestDispatcher("over-list.jsp");
+			rd.forward(request, response);
+			return;
+		}
 
 		// timeデータを格納する変数
 		List<TimeBean> overList = null;
